@@ -1,11 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" />
-</p>
-<p align="center">
-    <h1 align="center">VisionLocator</h1>
-</p>
-<p align="center">
-    <em><code>An UI automation testing tool based on YOLO, OCR, Appium, Allure</code></em>
+  <img src="https://github.com/linyeh1129/VisionLocator/blob/main/logo.png" width="400" />
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/linyeh1129/VisionLocator?style=default&color=0080ff" alt="license">
@@ -35,7 +29,7 @@
 
 ##  Overview
 
-<code>► Combine the features of Appium with YOLO and OCR. </code>
+An UI automation testing tool based on YOLO, OCR, Appium, Allure
 
 ---
 
