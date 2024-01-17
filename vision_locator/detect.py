@@ -32,7 +32,7 @@ def slide_e2e(start: DetectAttribute, end: DetectAttribute, duration=1000):
     Remote.driver.swipe(start_x=x1, start_y=y1, end_x=x2, end_y=y2, duration=duration)
 
 
-def ai_check_not_exist(label: Enum, numbers: int = 1, model='best', delay_start: int = 1, timeout: int = None):
+def ai_detect_not_exist(label: Enum, numbers: int = 1, model='best', delay_start: int = 1, timeout: int = None):
     time.sleep(delay_start)
     time_stamp = datetime.now().strftime('%Y.%m.%d %H.%M.%S')
     temp = f'.history/.ai/temp.png'
