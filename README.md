@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="https://github.com/linyeh1129/VisionLocator/blob/main/logo.png" width="440" />
+  <img src="https://tech-writing-tools.s3.us-west-2.amazonaws.com/39187916-e949-4eea-960d-50ff4eb600ef.png" width="440" />
 </p>
+
 <p align="center">
 	<img src="https://img.shields.io/github/license/linyeh1129/VisionLocator?style=default&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/linyeh1129/VisionLocator?style=default&color=0080ff" alt="last-commit">
@@ -88,12 +89,12 @@ Remote.ai_model = 'pre_trained_model_folder' # setup path which saves the .pt fi
 ```python
 from vision_locator.detect import ai_detect
 element = ai_detect(label=Label.example,
-		    model='best',
+                    model='best',
                     number=1,
-		    sort_axis=['y','x'],
-		    sort_group=None,
-		    timeout=None,
-		    show=False)
+                    sort_axis=['y','x'],
+                    sort_group=None,
+                    timeout=None,
+                    show=False)
 
 | Argument   | Description                                                      |
 | ---------- | ---------------------------------------------------------------- |
@@ -111,12 +112,12 @@ element = ai_detect(label=Label.example,
 ```python
 from vision_locator.detect import ai_detect_text
 element = ai_detect_text(label=Label.example,
-		         model='best',
+                         model='best',
                          numbers=1,
-		         text='example',
-		         segment=False,
-		         timeout=None,
-			 show=False)
+                         text='example',
+                         segment=False,
+                         timeout=None,
+                         show=False)
 
 | Argument   | Description                                                      |
 | ---------- | ---------------------------------------------------------------- |
@@ -133,11 +134,11 @@ element = ai_detect_text(label=Label.example,
 
 ```python
 from vision_locator.detect import ai_detect_not_exist
-ai_check_not_exist(label=Label.example,
-	           models='best',
-	           numbers=1,
-	           delay_start=1,
-	           timeout=1)
+ai_detect_not_exist(label=Label.example,
+                    models='best',
+                    numbers=1,
+                    delay_start=1,
+                    timeout=1)
 
 | Argument   | Description                                                      |
 | ---------- | ---------------------------------------------------------------- |
