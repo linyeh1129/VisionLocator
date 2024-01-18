@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="https://github.com/linyeh1129/VisionLocator/blob/main/logo.png" width="440" />
+  <img src="https://tech-writing-tools.s3.us-west-2.amazonaws.com/39187916-e949-4eea-960d-50ff4eb600ef.png" width="440" />
 </p>
+
 <p align="center">
 	<img src="https://img.shields.io/github/license/linyeh1129/VisionLocator?style=default&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/linyeh1129/VisionLocator?style=default&color=0080ff" alt="last-commit">
