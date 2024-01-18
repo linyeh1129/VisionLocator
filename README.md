@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/linyeh1129/VisionLocator/blob/main/logo.png" width="400" />
+  <img src="https://github.com/linyeh1129/VisionLocator/blob/main/logo.png" width="440" />
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/linyeh1129/VisionLocator?style=default&color=0080ff" alt="license">
@@ -12,14 +12,15 @@
 </p>
 <hr>
 
-##  Quick Links
+<h2 id="-quick-links">Quick Links</h2>
 
 > - [ Overview](#-overview)
 > - [ Features](#-features)
 > - [ Repository Structure](#-repository-structure)
 > - [ Getting Started](#-getting-started)
->   - [ Installation](#-installation)
->   - [ Running VisionLocator](#-running-VisionLocator)
+>	- [ Requirements](#-requirements)
+>	- [ Installation](#-installation)
+> - [ Basic Usage](#-basic-usage)
 > - [ Project Roadmap](#-project-roadmap)
 > - [ Contributing](#-contributing)
 > - [ License](#-license)
@@ -27,21 +28,21 @@
 
 ---
 
-##  Overview
+<h2 id="-overview">Overview</h2>
 
-An UI automation testing tool based on YOLO, OCR, Appium, Allure
-
----
-
-##  Features
-
-<code>► ai_detect\
-      ► ai_detect_text\
-      ► ai_detect_not_exist</code>
+- An UI automation testing tool based on YOLO, OCR, Appium, Allure.
 
 ---
 
-##  Repository Structure
+<h2 id="-features">Features</h2>
+
+- Detect UI elements by YOLO.
+- Query elements by Tesseract.
+- Interact with UI elements by Appium.
+
+---
+
+<h2 id="-repository-structure">Repository Structure</h2>
 
 ```
 └── VisionLocator
@@ -55,47 +56,145 @@ An UI automation testing tool based on YOLO, OCR, Appium, Allure
 
 ---
 
-##  Getting Started
+<h2 id="-getting-started">Getting Started</h2>
 
-***Requirements***
-
-Ensure you have the following dependencies installed on your system:
+<h3 id="-requirements">Requirements</h3>
 
 * **Python**: `version 3.10`
 * **OpenCV**: https://pypi.org/project/opencv-python/
 * **ultralytics**: https://pypi.org/project/ultralytics/
 * **pytesseract**: https://pypi.org/project/pytesseract/
 * **tesseract-ocr**: https://github.com/tesseract-ocr/tesseract/
-
-###  Installation
+* **allure-pythome-commons**: https://pypi.org/project/allure-python-commons/
+  
+<h3 id="-installation">Installation</h3>
 
 `pip install -i https://test.pypi.org/simple/ VisionLocator`
 
-###  Running VisionLocator
+---
 
-Use the following command to run VisionLocator:
+<h2 id="-basic-usage">Basic Usage</h2>
 
-`python main.py`
+- Initiate:
+
+```python
+from vision_locator.remote import Remote
+Remote.driver = webdriver.Remote(appium_server, capabilities) #initiate Appium web driver.
+Remote.windows_size = Remote.driver.get_window_size() #get the Appium window size.
+Remote.device_resolution = {'width':1290, 'height':2796} #setup the testing device's real resolution.
+Remote.ai_model = 'pre_trained_model_folder' #setup path which saves the .pt files.
+```
+- Detect element:
+```python
+from vision_locator.detect import ai_detect
+element = ai_detect(label=Label.example,
+		    model='best',
+                    number=1,
+		    sort_axis=['y','x'],
+		    sort_group=None,
+		    timeout=None,
+		    show=False)
+
+| Argument   | Description                                                      |
+| ---------- | ---------------------------------------------------------------- |
+| label      | Enum, this class should be a mapping of the label's index.       |
+| model      | Str, name of the pre-trained file, default='best'.               |
+| numbers    | Int, an expected number of YOLO predict, default=1.              |
+| sort_axis  | List, sorting the detected elements by order, default=['y', 'x'] |
+| sort_group | Int, sorting the elements by group, default=None.                |
+| timeout    | Int, default=None (set default timeout).                         |
+| show       | Bool, to show the YOLO predict screen, default=False.            |
+
+```
+- Detect element by text:
+
+```python
+from vision_locator.detect import ai_detect_text
+element = ai_detect_text(label=Label.example,
+		         model='best',
+                         numbers=1,
+		         text='example',
+		         segment=False,
+		         timeout=None,
+			 show=False)
+
+| Argument   | Description                                                      |
+| ---------- | ---------------------------------------------------------------- |
+| label      | Enum, this class should be a mapping of the label's index.       |
+| model      | Str, name of the pre-trained file, default='best'.               |
+| numbers    | Int, an expected number of YOLO predict, default=1.              |
+| text       | Str | List[Str], regex search text in detected elements.         |
+| timeout    | Int, default=None (set default timeout).                         |
+| show       | Bool, to show the YOLO predict screen, default=False.            |
+
+```
+- Detect element not exist
+
+```python
+from vision_locator.detect import ai_detect_not_exist
+ai_check_not_exist(label=Label.example,
+	           models='best',
+	           numbers=1,
+	           delay_start=1,
+	           timeout=1)
+
+| Argument   | Description                                                      |
+| ---------- | ---------------------------------------------------------------- |
+| label      | Enum, this class should be a mapping of the label's index.       |
+| model      | Str, name of the pre-trained file, default='best'.               |
+| numbers    | Int, an expected number of YOLO predict, default=1.              |
+| delay_start| Int, a waiting time before YOLO predict default=1.               |
+| timeout    | Int, default=None (set default timeout).                         |
+```
+
+- Slide
+  
+```python
+from vision_locator.detect import slide_up, slide_down, slide_e2e
+
+| Function   | Description                                                      |
+| ---------- | ---------------------------------------------------------------- |
+| slide_up   | Action by Appium driver to slide up.                             |
+| slide_down | Action by Appium driver to slide down.                           |
+| slide_e2e  | Action by Appium driver to slide from element to element.        |
+
+
+```
+
+- Click, Input, Text
+  
+```python
+from vision_locator.detect import ai_detect, ai_detect_text
+
+element detected by ai_detect, ai_detect_text can be click(), input(), text()
+
+| Function   | Description                                                      |
+| ---------- | ---------------------------------------------------------------- |
+| click      | Action by Appium driver to click.                                |
+| input      | Action by Appium driver to send_keys.                            |
+| text       | Action by OCR to query the text inside the element.              |
+
+```
 
 
 ---
 
-##  Project Roadmap
+<h2 id="-project-roadmap">Project Roadmap</h2>
 
 - [X] `► First release`
-- [ ] `► Improve performance`
 - [ ] `► Optimize the compatibility of Android`
+- [ ] `► Improve performance`
 - [ ] `► Optimize the compatibility of Selenium`
 
 ---
 
-##  Contributing
+<h2 id="-contributing">Contributing</h2>
 
 Contributions are welcome! Here are several ways you can contribute:
 
 - **[Submit Pull Requests](https://github/linyeh1129/VisionLocator/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 - **[Join the Discussions](https://github/linyeh1129/VisionLocator/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github/linyeh1129/VisionLocator/issues)**: Submit bugs found or log feature requests for Visionlocator.
+- **[Report Issues](https://github/linyeh1129/VisionLocator/issues)**: Submit bugs found or log feature requests for VisionLocator.
 
 <details closed>
     <summary>Contributing Guidelines</summary>
@@ -126,15 +225,17 @@ Once your PR is reviewed and approved, it will be merged into the main branch.
 
 ---
 
-##  License
+<h2 id="-license">License</h2>
 
 This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
 
 ---
 
-##  Acknowledgments
+<h2 id="-acknowledgments">Acknowledgments</h2>
 
-- List any resources, contributors, inspiration, etc. here.
+- Appium Document: https://appium.io/docs/en/2.2/
+- ultralytics: https://www.ultralytics.com/
+- Tesseract-ocr: https://github.com/tesseract-ocr/tesseract
 
 [**Return**](#-quick-links)
 
