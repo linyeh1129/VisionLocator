@@ -79,10 +79,10 @@
 
 ```python
 from vision_locator.remote import Remote
-Remote.driver = webdriver.Remote(appium_server, capabilities) #initiate Appium web driver.
-Remote.windows_size = Remote.driver.get_window_size() #get the Appium window size.
-Remote.device_resolution = {'width':1290, 'height':2796} #setup the testing device's real resolution.
-Remote.ai_model = 'pre_trained_model_folder' #setup path which saves the .pt files.
+Remote.driver = webdriver.Remote(appium_server, capabilities) # initiate Appium web driver.
+Remote.windows_size = Remote.driver.get_window_size() # get the Appium window size.
+Remote.device_resolution = {'width':1290, 'height':2796} # setup the testing device's real resolution.
+Remote.ai_model = 'pre_trained_model_folder' # setup path which saves the .pt files.
 ```
 - Detect element:
 ```python
