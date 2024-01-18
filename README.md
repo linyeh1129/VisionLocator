@@ -155,9 +155,9 @@ from vision_locator.detect import slide_up, slide_down, slide_e2e
 
 | Function   | Description                                                      |
 | ---------- | ---------------------------------------------------------------- |
-| slide_up   | Action by Appium driver to slide up.                             |
-| slide_down | Action by Appium driver to slide down.                           |
-| slide_e2e  | Action by Appium driver to slide from element to element.        |
+| slide_up   | Action by Appium to slide up.                                    |
+| slide_down | Action by Appium to slide down.                                  |
+| slide_e2e  | Action by Appium to slide from element to element.               |
 
 
 ```
@@ -171,8 +171,8 @@ element detected by ai_detect, ai_detect_text can be click(), input(), text()
 
 | Function   | Description                                                      |
 | ---------- | ---------------------------------------------------------------- |
-| click      | Action by Appium driver to click.                                |
-| input      | Action by Appium driver to send_keys.                            |
+| click      | Action by Appium to click.                                       |
+| input      | Action by Appium to send_keys.                                   |
 | text       | Action by OCR to query the text inside the element.              |
 
 ```
