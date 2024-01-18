@@ -32,13 +32,19 @@ def slide_e2e(start: DetectAttribute, end: DetectAttribute, duration=1000):
     Remote.driver.swipe(start_x=x1, start_y=y1, end_x=x2, end_y=y2, duration=duration)
 
 
-def ai_detect_not_exist(label: Enum, numbers: int = 1, model='best', delay_start: int = 1, timeout: int = None):
+def ai_detect_not_exist(label: Enum, 
+                        numbers: int = 1, 
+                        model='best', 
+                        delay_start: int = 1, 
+                        timeout: int = None):
+    
     time.sleep(delay_start)
     time_stamp = datetime.now().strftime('%Y.%m.%d %H.%M.%S')
     temp = f'.history/.ai/temp.png'
 
     if not timeout:
-        timeout = 60  # self.config.WAIT_TO_FIND_ELEMENT_TIMEOUT[self.env.environment_code]
+        timeout = 8 
+    #TODO Remote.timeout 
 
     for i in range(timeout):
         name = f'[{label.name}] {time_stamp} retry {i}'
@@ -61,10 +67,11 @@ def ai_detect_not_exist(label: Enum, numbers: int = 1, model='best', delay_start
 def ai_detect_text(label: Enum,
                    numbers: int,
                    text: Union[Pattern, List[Pattern]],
-                   model:str='best',
+                   model: str = 'best',
                    segment: bool = False,
                    timeout: int = None,
                    show: bool = False) -> Union[DetectAttribute, List[DetectAttribute]]:
+    
     text = [text] if type(text) is str else text
     detect = ai_detect(label=label, model=model, numbers=numbers, timeout=timeout, show=show)
 
