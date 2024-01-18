@@ -58,9 +58,15 @@ def ai_detect_not_exist(label: Enum, numbers: int = 1, model='best', delay_start
     return False
 
 
-def ai_detect_text(label: Enum, numbers: int, text: Union[Pattern, List[Pattern]], segment: bool = False, timeout: int = None) -> Union[DetectAttribute, List[DetectAttribute]]:
+def ai_detect_text(label: Enum,
+                   numbers: int,
+                   text: Union[Pattern, List[Pattern]],
+                   model:str='best',
+                   segment: bool = False,
+                   timeout: int = None,
+                   show: bool = False) -> Union[DetectAttribute, List[DetectAttribute]]:
     text = [text] if type(text) is str else text
-    detect = ai_detect(label=label, numbers=numbers, timeout=timeout)
+    detect = ai_detect(label=label, model=model, numbers=numbers, timeout=timeout, show=show)
 
     result = []
     for t in text:
@@ -88,7 +94,8 @@ def ai_detect(label: Enum,
     temp = f'.history/.ai/temp.png'
 
     if not timeout:
-        timeout = 60  # self.config.WAIT_TO_FIND_ELEMENT_TIMEOUT[self.env.environment_code]
+        timeout = 8
+        # TODO: Remote.timeout
 
     for i in range(timeout):
         name = f'[{label.name}] {time_stamp} retry {i}'
