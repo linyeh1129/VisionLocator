@@ -124,6 +124,7 @@ element = ai_detect_text(label=Label.example,
 | model      | Str, name of the pre-trained file, default='best'.               |
 | numbers    | Int, an expected number of YOLO predict, default=1.              |
 | text       | Str | List[Str], regex search text in detected elements.         |
+| segment    | Bool, OCR config for multiple lines, default=False.              |
 | timeout    | Int, default=None (set default timeout).                         |
 | show       | Bool, to show the YOLO predict screen, default=False.            |
 
