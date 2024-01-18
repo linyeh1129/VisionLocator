@@ -236,7 +236,7 @@ This project is protected under the [SELECT-A-LICENSE](https://choosealicense.co
 
 - Appium Document: https://appium.io/docs/en/2.2/
 - ultralytics: https://www.ultralytics.com/
-- Tesseract-ocr: https://github.com/tesseract-ocr/tesseract
+- tesseract-ocr: https://github.com/tesseract-ocr/tesseract
 
 [**Return**](#-quick-links)
 
