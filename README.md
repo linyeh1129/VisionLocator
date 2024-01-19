@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-	<img src="https://img.shields.io/github/license/linyeh1129/VisionLocator?style=default&color=0080ff" alt="license">
+	<img src="https://img.shields.io/badge/license-MIT-green&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/linyeh1129/VisionLocator?style=default&color=0080ff" alt="last-commit">
 	<img src="https://img.shields.io/github/languages/top/linyeh1129/VisionLocator?style=default&color=0080ff" alt="repo-top-language">
 	<img src="https://img.shields.io/github/languages/count/linyeh1129/VisionLocator?style=default&color=0080ff" alt="repo-language-count">
