@@ -229,7 +229,7 @@ Once your PR is reviewed and approved, it will be merged into the main branch.
 
 <h2 id="-license">License</h2>
 
-This project is protected under the MIT License. For more details, refer to the [LICENSE](https://github.com/linyeh1129/VisionLocator/blob/main/LICENSE.txt) file.
+This project is protected under the MIT License. For more details, refer to the [LICENSE](https://github.com/linyeh1129/VisionLocator/blob/main/LICENSE.txt).
 
 ---
 
