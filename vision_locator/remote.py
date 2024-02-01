@@ -1,8 +1,8 @@
-
 from appium.webdriver.webdriver import WebDriver
 import os
 from typing import Dict
 from ultralytics import YOLO
+from PIL import Image
 
 
 class RemoteMeta:
@@ -48,12 +48,27 @@ class RemoteMeta:
     @ai_model.setter
     def ai_model(cls, path: str) -> Dict[str, YOLO]:
         if path:
-            model_dict = {i.replace('.pt', ''): f'{path}/{i}' for i in os.listdir(path) if '.pt' in i}
 
-            for k, v in model_dict.items():
-                model = YOLO(v, task='detect')
-                model.predict(source='.history/.ai/blank.png', classes=0, max_det=1)
-                model_dict.update({k: model})
+            # history folder
+            try:
+                os.makedirs('.history/.ai')
+                with Image.new('RGB', (128, 128)) as image:
+                    image.save('.history/.ai/blank.png')
+            except:
+                pass
+
+            # model_dict = {name:path}
+            model_dict = {item.replace('.pt', ''): f'{path}/{item}'
+                          for item in os.listdir(path)
+                          if '.pt' in item}
+
+            # model_dict = {name:YOLO}
+            for name, file in model_dict.items():
+                model = YOLO(file, task='detect')
+                model_dict |= {name: model}
+
+            # initial predict
+            model.predict(source='.history/.ai/blank.png', classes=0, max_det=1)
 
             global GLOBAL_AI_MODEL
             GLOBAL_AI_MODEL = model_dict
