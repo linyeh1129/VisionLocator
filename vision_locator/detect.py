@@ -107,7 +107,7 @@ def ai_detect(label: Enum,
     for i in range(timeout):
         name = f'[{label.name}] {time_stamp} retry {i}'
         Remote.driver.get_screenshot_as_file(temp)
-        predict = Remote.ai_model[model].predict(source=f'.history/.ai/temp2.png', project='.history', name=name, classes=label.value, max_det=numbers, conf=0.2, save=True, save_crop=True, show=show)
+        predict = Remote.ai_model[model].predict(source=temp, project='.history', name=name, classes=label.value, max_det=numbers, conf=0.2, save=True, save_crop=True, show=show)
 
         os.remove(temp)
         check_predict = len(*[p.boxes.cls for p in predict])
