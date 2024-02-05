@@ -90,7 +90,7 @@ Remote.ai_model = 'pre_trained_model_folder' # setup path which saves the .pt fi
 from vision_locator.detect import ai_detect
 element = ai_detect(label=Label.example,
                     model='best',
-                    number=1,
+                    numbers=1,
                     sort_axis=['y','x'],
                     sort_group=None,
                     timeout=None,

@@ -3,6 +3,7 @@ import os
 from typing import Dict
 from ultralytics import YOLO
 from PIL import Image
+from pathlib import Path
 
 
 class RemoteMeta:
@@ -52,10 +53,13 @@ class RemoteMeta:
             # history folder
             try:
                 os.makedirs('.history/.ai')
-                with Image.new('RGB', (128, 128)) as image:
-                    image.save('.history/.ai/blank.png')
             except:
                 pass
+
+            # img for predict initiated
+            if not Path('.history/.ai/blank.png').is_file():
+                with Image.new('RGB', (128, 128)) as img:
+                    img.save('.history/.ai/blank.png')
 
             # model_dict = {name:path}
             model_dict = {item.replace('.pt', ''): f'{path}/{item}'
@@ -67,7 +71,7 @@ class RemoteMeta:
                 model = YOLO(file, task='detect')
                 model_dict |= {name: model}
 
-            # initial predict
+            # initiate predict
             model.predict(source='.history/.ai/blank.png', classes=0, max_det=1)
 
             global GLOBAL_AI_MODEL
