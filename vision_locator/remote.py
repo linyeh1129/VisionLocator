@@ -3,6 +3,7 @@ import os
 from typing import Dict
 from ultralytics import YOLO
 from PIL import Image
+import re
 from pathlib import Path
 
 
@@ -62,20 +63,23 @@ class RemoteMeta:
                     img.save('.history/.ai/blank.png')
 
             # model_dict = {name:path}
-            model_dict = {item.replace('.pt', ''): f'{path}/{item}'
-                          for item in os.listdir(path)
-                          if '.pt' in item}
+            # model_dict = {item.replace('.pt', ''): f'{path}/{item}'
+            #               for item in os.listdir(path)
+            #               if '.pt' in item}
+            pt_path = [dir.as_posix() for dir in Path(path).rglob('*.pt')]
+            pt_name = [(re.search(r'\/(\w+).pt', dir)).group(1) for dir in pt_path]
+            pt_dict = dict(zip(pt_name, pt_path))
 
             # model_dict = {name:YOLO}
-            for name, file in model_dict.items():
+            for name, file in pt_dict.items():
                 model = YOLO(file, task='detect')
-                model_dict |= {name: model}
+                pt_dict |= {name: model}
 
             # initiate predict
             model.predict(source='.history/.ai/blank.png', classes=0, max_det=1)
 
             global GLOBAL_AI_MODEL
-            GLOBAL_AI_MODEL = model_dict
+            GLOBAL_AI_MODEL = pt_dict
 
         else:
             del GLOBAL_AI_MODEL
