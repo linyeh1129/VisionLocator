@@ -62,24 +62,17 @@ class RemoteMeta:
                 with Image.new('RGB', (128, 128)) as img:
                     img.save('.history/.ai/blank.png')
 
-            # model_dict = {name:path}
-            # model_dict = {item.replace('.pt', ''): f'{path}/{item}'
-            #               for item in os.listdir(path)
-            #               if '.pt' in item}
             pt_path = [dir.as_posix() for dir in Path(path).rglob('*.pt')]
             pt_name = [(re.search(r'\/(\w+).pt', dir)).group(1) for dir in pt_path]
-            pt_dict = dict(zip(pt_name, pt_path))
-
-            # model_dict = {name:YOLO}
-            for name, file in pt_dict.items():
-                model = YOLO(file, task='detect')
-                pt_dict |= {name: model}
+  
+            yolos = [YOLO(dir, task='detect') for dir in pt_path]
+            yolo_dict = dict(zip(pt_name, yolos))
 
             # initiate predict
-            model.predict(source='.history/.ai/blank.png', classes=0, max_det=1)
+            yolos[0].predict(source='.history/.ai/blank.png', classes=0, max_det=1)
 
             global GLOBAL_AI_MODEL
-            GLOBAL_AI_MODEL = pt_dict
+            GLOBAL_AI_MODEL = yolo_dict
 
         else:
             del GLOBAL_AI_MODEL
