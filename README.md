@@ -1,6 +1,10 @@
-<p align="center">
-  <img src="https://tech-writing-tools.s3.us-west-2.amazonaws.com/39187916-e949-4eea-960d-50ff4eb600ef.png" width="440" />
-</p>
+## This project will be reorganized to these links below ##
+- core features
+	- https://github.com/linyeh1129/vloc
+- optional functions:
+	- https://github.com/linyeh1129/vloc_selenium
+	- https://github.com/linyeh1129/vloc_playwright
+
 
 <p align="center">
 	<img src="https://img.shields.io/badge/license-MIT-green&color=0080ff" alt="license">
