@@ -2,8 +2,8 @@
 - core features
 	- https://github.com/linyeh1129/vloc
 - optional functions:
-	- https://github.com/linyeh1129/vloc_selenium
-	- https://github.com/linyeh1129/vloc_playwright
+	- https://github.com/linyeh1129/vloc_plugin_selenium
+	- https://github.com/linyeh1129/vloc_plugin_playwright
 
 
 <p align="center">
